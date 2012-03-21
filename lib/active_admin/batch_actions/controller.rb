@@ -12,6 +12,11 @@ module ActiveAdmin
           raise "Couldn't find batch action \"#{params[:batch_action]}\""
         end
       end
+      
+      # Path to the batch action itself
+      def batch_action_path
+        "#{collection_path}/batch_action"
+      end
 
       protected
 

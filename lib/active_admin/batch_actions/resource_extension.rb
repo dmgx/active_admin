@@ -18,7 +18,7 @@ module ActiveAdmin
       # @param [String] title
       # @param [Hash] options
       # => :if is a proc that will be called to determine if the BatchAction should be displayed
-      # => :sort_order is used to sort the batch actions ascending
+      # => :priority is used to sort the batch actions ascending
       # => :confirm is a string which the user will have to accept in order to process the action
       #
       def add_batch_action(sym, title, options = {}, &block)
@@ -36,11 +36,6 @@ module ActiveAdmin
       # Clears all the existing batch actions for this resource
       def clear_batch_actions!
         @batch_actions = {}
-      end
-
-      # Path to the batch action itself
-      def batch_action_path
-        "batch_action_#{route_collection_path}".to_sym
       end
 
       private
