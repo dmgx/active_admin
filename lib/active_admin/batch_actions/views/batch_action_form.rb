@@ -11,14 +11,17 @@ module ActiveAdmin
 
       def build(options = {}, &block)
         options[:id] ||= "collection_selection"
-        @contents = input(:name => :batch_action, :id => :batch_action, :type => :hidden)
-        @prefix_html = text_node(form_tag batch_action_path, :id => options[:id])
+        @prefix_html = with_output_buffer do
+          text_node(form_tag batch_action_path, :id => options[:id])
+        end
         super(options)
+        add_child text_node(hidden_field_tag :batch_action)
       end
 
       # Override to_html to wrap the custom form stuff
       def to_s
-        @prefix_html + content + text_node('</form>'.html_safe)
+        html = @prefix_html + content
+        html += raw '</form>'
       end
 
       def add_child(child)
