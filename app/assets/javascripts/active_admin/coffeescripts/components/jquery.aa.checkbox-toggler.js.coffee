@@ -17,7 +17,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
       @$container = $(@container)
 
     if not @$container.find(".toggle_all").length
-      throw new Error("'toggle all' checkbox not found")
+      #throw new Error("'toggle all' checkbox not found")
     else
       @toggle_all_checkbox = @$container.find(".toggle_all")
 
